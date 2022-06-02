@@ -52,7 +52,7 @@ module.exports = function words(language) {
     var text = fs.readFileSync(filePath, "utf-8");
     text = text.split('\n');
     text.forEach(word => {
-        trie.insert(word);
+        trie.insert(word.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
     });
     
     return trie;
